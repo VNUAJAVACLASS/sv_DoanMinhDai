@@ -49,4 +49,5 @@ public abstract class Human {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
+
 }

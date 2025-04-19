@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Student extends Human {
 	private String class_;
-	private Map<String,ICreditSubject> subjectList = new HashMap<String,ICreditSubject>();
+	private Map<String,Subject> subjectList = new HashMap<String,Subject>();
 	
 	public Student(){
 		
@@ -32,7 +32,7 @@ public class Student extends Human {
 		this.class_ = class_;
 	}
 
-	public void addSubject(ICreditSubject sub) {
+	public void addSubject(Subject sub) {
 		subjectList.put(sub.getSubjectCode(), sub);
 	}
 	
@@ -48,8 +48,8 @@ public class Student extends Human {
 		this.class_ = class_;
 	}
 	
-	public List<ICreditSubject> searchSubject(String key) {
-		List<ICreditSubject> listResult = new LinkedList<ICreditSubject>();
+	public List<Subject> searchSubject(String key) {
+		List<Subject> listResult = new LinkedList<Subject>();
 	    subjectList.forEach( (k, v) -> {
 	    	if (v.getSubjectName().contains(key)) {
 				listResult.add(v);
@@ -60,8 +60,8 @@ public class Student extends Human {
 	public float calTermAverageMark() {
 	    int sumCredit = 0;
 	    int sumGrade = 0;
-	    for (HashMap.Entry<String, ICreditSubject> entry : subjectList.entrySet()) {
-	        ICreditSubject subject = entry.getValue();
+	    for (HashMap.Entry<String, Subject> entry : subjectList.entrySet()) {
+	        Subject subject = entry.getValue();
 	        sumCredit += subject.getCredit();
 	        sumGrade += subject.calConversionMark(subject.calGrade()) * subject.getCredit();
 	    }
@@ -89,11 +89,11 @@ public class Student extends Human {
 	    sb.append("Lop          : ").append(class_).append("\n");
 	    sb.append("Đia chi      : ").append(address).append("\n");
 	    if (subjectList.isEmpty()) {
-		    sb.append("Sinh vien khong co mon hoc nao trong ky");
+		    sb.append("Sinh vien khong co mon hoc nao trong ky\n");
 		    return sb.toString();
 	    }
 	    sb.append("Danh sach mon hoc:\n");
-	    for (ICreditSubject s : subjectList.values()) {
+	    for (Subject s : subjectList.values()) {
 	        sb.append(s).append("\n");
 	    }	
 	    sb.append("Diem trung binh hoc ky: ").append(calTermAverageMark()).append("\n");

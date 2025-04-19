@@ -1,20 +1,25 @@
 package entity;
 
-public abstract class Subject implements ICreditSubject{
+import java.util.ArrayList;
+import java.util.List;
+
+public class Subject{
 	private String subjectName;
 	private String subjectCode;
 	private int credit;
-	
+	private List<ScoreEntry> scores;
+
 	public Subject() {
 		
 	}
 	
-	public Subject(String subjectCode, String subjectName,int credit) {
+	public Subject(String subjectName, String subjectCode, int credit) {
 		this.subjectName = subjectName;
 		this.subjectCode = subjectCode;
 		this.credit = credit;
-	}	
-	
+		this.scores = new ArrayList<>();
+	}
+
 	public String getSubjectCode() {
 		return subjectCode;
 	}
@@ -26,6 +31,19 @@ public abstract class Subject implements ICreditSubject{
 	public int getCredit() {
 		return credit;
 	}
+	
+    public void setScores(List<ScoreEntry> scores) {
+        this.scores = scores;
+    }
+
+    public List<ScoreEntry> getScores() {
+		return scores;
+	}
+
+	public void addScore(float score, float weight) {
+        scores.add(new ScoreEntry(score, weight));
+    }
+
 	
 	public float calConversionMark(String grade) {
         switch (grade) {
@@ -52,11 +70,25 @@ public abstract class Subject implements ICreditSubject{
         return "F";
 	}
 
+	private float calSubjectMark() {
+		float total = 0;
+		for (ScoreEntry scoreEntry : scores) {
+			total += (float)scoreEntry.getScore() * scoreEntry.getWeight();
+		}
+		return total;
+	}
+	
 	@Override
 	public String toString() {
-	    return "\n    - Mã môn học   : " + subjectCode
-	    		+ "\n    - Tên môn học  : " + subjectName
-	    		+ "\n    - Số tín chỉ   : " + credit;
-	    }
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("Subject: ").append(subjectName)
+	      .append(" (").append(subjectCode).append("), Credit: ").append(credit)
+	      .append("\nScores:\n");
 
+	    for (ScoreEntry entry : scores) {
+	        sb.append(" - Score: ").append(entry.getScore());
+	         sb.append(", Weight: ").append(entry.getWeight()).append("\n");
+	    }
+	    return sb.toString();
+	}
 }
