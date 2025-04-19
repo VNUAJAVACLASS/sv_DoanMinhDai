@@ -1,6 +1,6 @@
 package entity;
 
-public abstract class Subject {
+public abstract class Subject implements ICreditSubject{
 	private String subjectName;
 	private String subjectCode;
 	private int credit;
@@ -13,9 +13,19 @@ public abstract class Subject {
 		this.subjectName = subjectName;
 		this.subjectCode = subjectCode;
 		this.credit = credit;
+	}	
+	
+	public String getSubjectCode() {
+		return subjectCode;
 	}
 	
-	public abstract float calConversionMark();
+	public String getSubjectName() {
+		return subjectName;
+	}
+
+	public int getCredit() {
+		return credit;
+	}
 	
 	public float calConversionMark(String grade) {
         switch (grade) {
@@ -31,7 +41,7 @@ public abstract class Subject {
 	}
 	
 	public String calGrade() {
-        float subjectMark = calConversionMark();
+        float subjectMark = calSubjectMark();
         if (subjectMark >= 8.5) return "A";
         if (subjectMark >= 7.5) return "B+";
         if (subjectMark >= 7.0) return "B";
@@ -40,18 +50,6 @@ public abstract class Subject {
         if (subjectMark >= 5.5) return "D+";
         if (subjectMark >= 5.0) return "D";
         return "F";
-	}
-	
-	public String getSubjectCode() {
-		return subjectCode;
-	}
-	
-	public String getSubjectName() {
-		return subjectName;
-	}
-
-	public int getCredit() {
-		return credit;
 	}
 
 	@Override

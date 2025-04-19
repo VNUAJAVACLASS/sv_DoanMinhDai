@@ -38,7 +38,7 @@ public class Subject {
 	}
 	
 	public String calGrade() {
-        float subjectMark = calSubjectMark();
+        float subjectMark = calConversionMark();
         
         if (subjectMark >= 8.5) return "A";
         if (subjectMark >= 7.5) return "B+";
@@ -49,10 +49,7 @@ public class Subject {
         if (subjectMark >= 5.0) return "D";
         return "F";
 	}
-	
-	public float calSubjectMark() {
-		return 0;
-	}
+
 
 	public int getCredit() {
 		return credit;

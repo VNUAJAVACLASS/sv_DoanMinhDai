@@ -27,7 +27,7 @@ public class JavaSubject extends Subject{
 	}
 
 	@Override
-	public float calConversionMark() {
+	public float calSubjectMark() {
 		return (attendanceMark * 0.1f) + (midExamMark * 0.3f) + (finalExamMark * 0.6f);
 	}
 
@@ -37,8 +37,8 @@ public class JavaSubject extends Subject{
 	           + "\n        - Chuyen can    : " + attendanceMark
 	           + "\n        - Giua ky       : " + midExamMark
 	           + "\n        - Cuoi ky       : " + finalExamMark
-	           + "\n        - Tong ket(10)  : " + calConversionMark()
-	           + "\n        - Tong ket(4)   : " + super.calGrade()
+	           + "\n        - Tong ket(10)  : " + calSubjectMark()
+	           + "\n        - Tong ket(4)   : " + super.calConversionMark(super.calGrade())
 	           + "\n===============================";
 	}
 

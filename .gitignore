@@ -4,7 +4,8 @@
 .classpath
 .project
 .settings/
-/.metadata/         # metadata ở mọi cấp, thường nên tránh track
+.metadata/
+bin/
 
 # ===================
 # Build folders

@@ -31,7 +31,7 @@ public class PythonSubject extends Subject {
 	}
 
 	@Override
-	public float calConversionMark() {
+	public float calSubjectMark() {
 		return (attendanceMark * 0.1f) + (midExamMark1 * 0.2f)+ (midExamMark2 * 0.2f) + (finalExamMark * 0.5f);
 	}
 
@@ -42,8 +42,8 @@ public class PythonSubject extends Subject {
 	           + "\n        - Giua ky 1     : " + midExamMark1
 	           + "\n        - Giua ky 2     : " + midExamMark2
 	           + "\n        - Cuoi ky       : " + finalExamMark
-	           + "\n        - Tong ket(10)  : " + calConversionMark()
-	           + "\n        - Tong ket(4)   : " + super.calGrade()
+	           + "\n        - Tong ket(10)  : " + calSubjectMark()
+	           + "\n        - Tong ket(4)   : " + super.calConversionMark(super.calGrade())
 	           + "\n===============================";
 
 	}

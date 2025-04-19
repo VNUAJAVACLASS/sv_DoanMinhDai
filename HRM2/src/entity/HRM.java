@@ -1,11 +1,12 @@
 package entity;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class HRM {
-	private HashMap<String,Human> hrList = new HashMap<String,Human>();
-	private HashMap<String,Subject> subList = new HashMap<String,Subject>();
+	private Map<String,Human> hrList = new HashMap<String,Human>();
+	private Map<String,Subject> subList = new HashMap<String,Subject>();
 
 	public HRM() {
 		
@@ -74,16 +75,12 @@ public class HRM {
 	}
 	
 	public Subject searchSubject(String code) {
-		for (Subject subject : subList.values()) {
-			if (subject.getSubjectCode().toLowerCase().equals(code)) {
-				return subject;
-			}
-		}
-		return null;
+		Subject sub = subList.get(code);
+		return sub;
 	}
 	
 	public void printAllSubject() {
-		for (Subject sub : subList.values()) {
+		for (ICreditSubject sub : subList.values()) {
 			System.out.println("(" + sub.getSubjectCode() +")" + sub.getSubjectName() + " | " + sub.getCredit());
 		}
 	}
@@ -96,6 +93,7 @@ public class HRM {
 	    
 		System.out.println("Chon mon hoc muon dang ky: ");
 		printAllSubject();
+		
 	    System.out.print("Nhap ma mon hoc muon dang ky: ");
 	    String subjectCode = sc.nextLine();
 	    
@@ -111,8 +109,8 @@ public class HRM {
         addHm(new Student("671259", "Doan Minh Dai", "K67CNTTA" , "Ninh Binh"));   
         addHm(new Student("671101", "Pham Thanh D", "Ha Nam"));
         
-		JavaSubject javaSub = new JavaSubject("TH01","Lap trinh java",3);
-		PythonSubject pythonSub = new PythonSubject("TH02", "Lap trinh Python", 2); 
+		Subject javaSub =  new JavaSubject("TH01","Lap trinh java",3);
+		Subject pythonSub = new PythonSubject("TH02", "Lap trinh Python", 2); 
 
 		addSub(pythonSub);
 		addSub(javaSub);

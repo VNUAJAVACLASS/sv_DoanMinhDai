@@ -6,16 +6,19 @@ public class Lecturer extends Human{
 	private String password;
 
 	public Lecturer() {
-		
 	}
-	 
-	public Lecturer(String code, String password) {
-		super(code);
-		this.password = password;
+	
+	public Lecturer(String code, String fullname) {
+		super(code, fullname);
 	}
 	
 	public Lecturer(String code, String fullname, String address) {
 		super(code, fullname, address);
+	}
+	
+	public Lecturer(String code, String fullname, String address, String password) {
+		super(code, fullname, address);
+		this.password = password;
 	}
 	
 	@Override

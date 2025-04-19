@@ -3,11 +3,12 @@ package entity;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Student extends Human {
 	private String class_;
-	private HashMap<String,Subject> subjectList = new HashMap<String,Subject>();
+	private Map<String,ICreditSubject> subjectList = new HashMap<String,ICreditSubject>();
 	
 	public Student(){
 		
@@ -31,7 +32,7 @@ public class Student extends Human {
 		this.class_ = class_;
 	}
 
-	public void addSubject(Subject sub) {
+	public void addSubject(ICreditSubject sub) {
 		subjectList.put(sub.getSubjectCode(), sub);
 	}
 	
@@ -47,21 +48,20 @@ public class Student extends Human {
 		this.class_ = class_;
 	}
 	
-	public List<Subject> searchSubject(String key) {
-		List<Subject> listResual = new LinkedList<Subject>();
+	public List<ICreditSubject> searchSubject(String key) {
+		List<ICreditSubject> listResult = new LinkedList<ICreditSubject>();
 	    subjectList.forEach( (k, v) -> {
 	    	if (v.getSubjectName().contains(key)) {
-				listResual.add(v);
+				listResult.add(v);
 			} } );
-		return listResual;
+		return listResult;
 	}
 	
 	public float calTermAverageMark() {
 	    int sumCredit = 0;
 	    int sumGrade = 0;
-
-	    for (HashMap.Entry<String, Subject> entry : subjectList.entrySet()) {
-	        Subject subject = entry.getValue();
+	    for (HashMap.Entry<String, ICreditSubject> entry : subjectList.entrySet()) {
+	        ICreditSubject subject = entry.getValue();
 	        sumCredit += subject.getCredit();
 	        sumGrade += subject.calConversionMark(subject.calGrade()) * subject.getCredit();
 	    }
@@ -93,7 +93,7 @@ public class Student extends Human {
 		    return sb.toString();
 	    }
 	    sb.append("Danh sach mon hoc:\n");
-	    for (Subject s : subjectList.values()) {
+	    for (ICreditSubject s : subjectList.values()) {
 	        sb.append(s).append("\n");
 	    }	
 	    sb.append("Diem trung binh hoc ky: ").append(calTermAverageMark()).append("\n");
