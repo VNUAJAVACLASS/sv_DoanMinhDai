@@ -15,13 +15,12 @@ public abstract class Human {
 	}
 
 	public Human(String code, String fullname){
-		this.code = code;
+		this(code);
 		this.fullname = fullname;
 	}
 	
 	public Human(String code, String fullname, String address){
-		this.code = code;
-		this.fullname = fullname;
+		this(code,fullname);
 		this.address = address;
 	}
 	
@@ -50,4 +49,5 @@ public abstract class Human {
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
 	}
+
 }

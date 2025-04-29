@@ -1,12 +1,13 @@
 package entity;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Student extends Human {
 	private String class_;
-	private List<String> subjectList = new LinkedList<String>();
+	private List<Subject> subjectList = new LinkedList<Subject>();
 	
 	public Student(){
 		
@@ -31,11 +32,18 @@ public class Student extends Human {
 	}
 
 	public void AddSubject(Subject sub) {
-		
+		subjectList.add(sub);
 	}
 	
 	public float calTermAverageMark() {
-		return 0;
+	    int sumCredit = 0;
+	    int sumGrade = 0;
+	    
+	    for (Subject sub : subjectList) {
+	        sumCredit += sub.getCredit();
+	        sumGrade += sub.calConversionMark(sub.calGrade()) * sub.getCredit();
+	    }
+	    return (float) sumGrade / sumCredit;
 	}
 	
 	public void enterInfo(Scanner sc) {
@@ -53,7 +61,7 @@ public class Student extends Human {
 	@Override
 	public String toString() {
 		return "Student [class_=" + class_ + ", subjectList=" + subjectList + ", address=" + address + ", code=" + code
-				+ ", fullname=" + fullname + "]";
+				+ ", fullname=" + fullname + "]" + "Term Average Mark" + calTermAverageMark();
 	}
 	
 	

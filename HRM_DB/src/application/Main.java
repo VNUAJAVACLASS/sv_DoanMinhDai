@@ -1,12 +1,15 @@
-package entity;
+package application;
 
 import java.util.Scanner;
 
+import service.SubjectService;
+import service.UserService;
+
 public class Main {
 	public static void main(String[] args) {
-        HRM hrm = new HRM();
+        UserService userService = new UserService();
+        SubjectService subjectService = new SubjectService();
         boolean continue_ = true;
-        hrm.initDemoData();
         while(continue_) {
         	Scanner sc = new Scanner(System.in);
         	System.out.println("Chon chuc nang:");
@@ -22,39 +25,45 @@ public class Main {
         	sc.nextLine();
         	switch (choice) {
 			case 1:
-				hrm.printHRList();
+				System.out.println(userService.printHRList());
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 2:
-				hrm.printStudent();
+				System.out.println(userService.printStudent());
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 3:
-				hrm.printLecturer();
+				System.out.println(userService.printLecturer());
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 4:
 				System.out.println("Nhap vao ma code cua nhan su:");
 				String key = sc.nextLine();
-				System.out.println(hrm.searchHuman(key));
+				System.out.println(userService.searchHuman(key));
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 5:
-				hrm.addHR(sc);
+				userService.addHR(sc);
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 6:
-				hrm.addHR(sc);
+				userService.addHR(sc);
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;
 			case 7:
-				hrm.registerSubject(sc);
+				System.out.println(userService.printStudent());
+				System.out.println("Nhập mã sinh viên");
+				String student_code = sc.nextLine();
+				System.out.println(subjectService.printAllSubject());
+				System.out.println("Nhập mã môn học");
+				String subject_code = sc.nextLine();
+				userService.registerSubject(student_code, subject_code);
 				System.out.println("\n>> Nhan Enter de quay lai menu...");
 				sc.nextLine();
 				break;

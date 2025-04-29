@@ -3,11 +3,12 @@ package entity;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Student extends Human {
 	private String class_;
-	private HashMap<String,Subject> subjectList = new HashMap<String,Subject>();
+	private Map<String,Subject> subjectList = new HashMap<String,Subject>();
 	
 	public Student(){
 		
@@ -48,18 +49,17 @@ public class Student extends Human {
 	}
 	
 	public List<Subject> searchSubject(String key) {
-		List<Subject> listResual = new LinkedList<Subject>();
+		List<Subject> listResult = new LinkedList<Subject>();
 	    subjectList.forEach( (k, v) -> {
 	    	if (v.getSubjectName().contains(key)) {
-				listResual.add(v);
+				listResult.add(v);
 			} } );
-		return listResual;
+		return listResult;
 	}
 	
 	public float calTermAverageMark() {
 	    int sumCredit = 0;
 	    int sumGrade = 0;
-
 	    for (HashMap.Entry<String, Subject> entry : subjectList.entrySet()) {
 	        Subject subject = entry.getValue();
 	        sumCredit += subject.getCredit();
@@ -89,7 +89,7 @@ public class Student extends Human {
 	    sb.append("Lop          : ").append(class_).append("\n");
 	    sb.append("Đia chi      : ").append(address).append("\n");
 	    if (subjectList.isEmpty()) {
-		    sb.append("Sinh vien khong co mon hoc nao trong ky");
+		    sb.append("Sinh vien khong co mon hoc nao trong ky\n");
 		    return sb.toString();
 	    }
 	    sb.append("Danh sach mon hoc:\n");

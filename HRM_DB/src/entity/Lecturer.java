@@ -5,17 +5,28 @@ import java.util.Scanner;
 public class Lecturer extends Human{
 	private String password;
 
-	public Lecturer() {
-		
+	public String getPassword() {
+		return password;
 	}
-	 
-	public Lecturer(String code, String password) {
-		super(code);
+
+	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Lecturer() {
+	}
+	
+	public Lecturer(String code, String fullname) {
+		super(code, fullname);
 	}
 	
 	public Lecturer(String code, String fullname, String address) {
 		super(code, fullname, address);
+	}
+	
+	public Lecturer(String code, String fullname, String address, String password) {
+		super(code, fullname, address);
+		this.password = password;
 	}
 	
 	@Override
