@@ -27,16 +27,16 @@ public class Subject {
         this.lopHoc = lopHoc;
     }
 
-    public Subject(Subject subject) {
-        this.maMon = subject.maMon;
-        this.tenMon = subject.tenMon;
-        this.nhom = subject.nhom;
-        this.to = subject.to;
-        this.soTinChi = subject.soTinChi;
-        this.soTietLT = subject.soTietLT;
-        this.soTietTH = subject.soTietTH;
-        this.lopHoc = subject.lopHoc;
-    }
+//    public Subject(Subject subject) {
+//        this.maMon = subject.maMon;
+//        this.tenMon = subject.tenMon;
+//        this.nhom = subject.nhom;
+//        this.to = subject.to;
+//        this.soTinChi = subject.soTinChi;
+//        this.soTietLT = subject.soTietLT;
+//        this.soTietTH = subject.soTietTH;
+//        this.lopHoc = subject.lopHoc;
+//    }
 
     public String getMaMon() {
         return maMon;

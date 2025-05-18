@@ -6,18 +6,18 @@ import com.edu.vnua.fita.entity.Day;
 import com.edu.vnua.fita.entity.Schedule;
 import com.edu.vnua.fita.entity.Week;
 import com.edu.vnua.fita.utils.DateHelper;
-import com.edu.vnua.fita.utils.PlaywrightUtil;
 
 import java.time.LocalDate;
 import java.util.Map;
 
 public class ScheduleService {
     private Schedule schedule;
+    private DateHelper dateHelper;
 
     public ScheduleService() {
         try {
-            String dataSchedule = PlaywrightUtil.CrawlData();
-            this.schedule = JsoupUtil.parseSchedule(dataSchedule);
+        	this.dateHelper = new DateHelper();
+            this.schedule = JsoupUtil.parseSchedule();
         } catch (Exception e) {
             System.out.println("Không thể tải thời khóa biểu: " + e.getMessage());
             this.schedule = new Schedule();
@@ -54,7 +54,7 @@ public class ScheduleService {
 
         for (int thu = 2; thu <= 7; thu++) {
             Day day = t.getDay(thu);
-            LocalDate date = DateHelper.START_DATE.plusDays((tuan - 1) * 7L + (thu - 2));
+            LocalDate date = dateHelper.getStartDate().plusDays((tuan - 1) * 7L + (thu - 2));
             printDaySchedule(thu, date, day);
         }
     }
@@ -97,7 +97,7 @@ public class ScheduleService {
         for (Map.Entry<Integer, Day> entryNgay : week.getDayList().entrySet()) {
             int thu = entryNgay.getKey();
             Day day = entryNgay.getValue();
-            LocalDate date = DateHelper.START_DATE.plusDays((soTuan - 1) * 7L + (thu - 2));
+            LocalDate date = dateHelper.getStartDate().plusDays((soTuan - 1) * 7L + (thu - 2));
             printDaySchedule(thu, date, day);
         }
     }

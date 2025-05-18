@@ -6,15 +6,23 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsoupUtil {
-    public static Schedule parseSchedule(String html) {
+    public static Schedule parseSchedule() throws Exception{
+    	ReadScheduleObj obj = ReadScheduleFactory.createReadScheduleObj("playwright");
+    	obj.readSchedule();
+    	obj.readStartDate();
+    	
+    	InputStream inputStream = new FileInputStream("src/main/resources/schedule.html");
         Schedule tkb = new Schedule();
         Subject lastSubject = null;
 
-        Document doc = Jsoup.parse(html);
+        Document doc = Jsoup.parse(inputStream, String.valueOf(StandardCharsets.UTF_8), "");
 
         Element table = doc.select("table").first();
         Elements rows = table.select("tr");
@@ -62,7 +70,7 @@ public class JsoupUtil {
 
     private static void addMonHoc(Schedule tkb, Subject lastSubject, int thu, int tietBD, int soTiet, String phong, String gv, List<Integer> tuan) {
         for (Integer s : tuan) {
-            Subject mh = new Subject(lastSubject);
+            Subject mh = lastSubject;
             if (tkb.getWeekMap().containsKey(s)) {
                 Week t = tkb.getWeekMap().get(s);
                 Day n = t.getDay(thu);

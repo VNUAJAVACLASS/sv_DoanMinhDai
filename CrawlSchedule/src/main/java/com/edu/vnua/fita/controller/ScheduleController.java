@@ -48,7 +48,6 @@ public class ScheduleController {
                     break;
                 case 6:
                     System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
-                    scanner.close();
                     System.exit(0);
                     return;
                 default:
