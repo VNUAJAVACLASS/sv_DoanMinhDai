@@ -10,13 +10,13 @@ import jakarta.persistence.Transient;
 @MappedSuperclass
 public class Human {
 	@Id
-	@Column(name = "MaSV")
+	@Column(name = "user_code")
 	protected String code;
 
-	@Column(name = "Ten")
+	@Column(name = "fullname")
 	protected String fullname;
 	
-	@Transient
+	@Column(name = "address")
 	protected String address;
 	
 	public Human(){

@@ -21,7 +21,7 @@ public class CreditHibernateUtil {
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "net.ucanaccess.jdbc.UcanaccessDriver");
-                settings.put(Environment.URL, "jdbc:ucanaccess://lib/Database1.accdb;");
+                settings.put(Environment.URL, "jdbc:ucanaccess://lib/baitoantinchi.accdb;");
                 settings.put(Environment.USER, "");
                 settings.put(Environment.PASS, "");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.SQLServerDialect");

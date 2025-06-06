@@ -10,9 +10,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
 @Entity
-@Table(name = "SINHVIEN")
+@Table(name = "tbl_users")
 public class Student extends Human {
-	@Column(name = "MaLop")
+	@Column(name = "class")
 	private String class_;
 	
 	@Transient
