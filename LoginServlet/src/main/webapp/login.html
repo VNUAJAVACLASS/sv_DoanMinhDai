@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+  <!-- KHÔNG còn dùng ${pageContext...}, link tương đối -->
+  <link rel="stylesheet" href="static/css/login.css">
+</head>
+<body>
+
+  <div class="modal">
+    <form class="modal-content" action="login" method="post">
+      <div class="imgcontainer">
+        <img src="static/img/img_avatar2.png" alt="Avatar" class="avatar">
+        <div class="title">Đăng nhập</div>
+        <div class="subtitle">Mời nhập thông tin tài khoản của bạn</div>
+      </div>
+
+      <div class="container">
+        <!-- Hiển thị lỗi nếu URL có ?error=... -->
+        <div id="error" class="error" style="display:none;"></div>
+
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" id="uname" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="psw" required>
+
+        <label class="remember">
+          <input type="checkbox" name="remember" checked="checked"> Remember me
+        </label>
+
+        <button type="submit">Login</button>
+      </div>
+
+      <div class="container footer">
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // đọc ?error=... và hiển thị
+    const params = new URLSearchParams(location.search);
+    const err = params.get("error");
+    if (err) {
+      const box = document.getElementById("error");
+      box.textContent = err;
+      box.style.display = "block";
+    }
+  </script>
+
+</body>
+</html>

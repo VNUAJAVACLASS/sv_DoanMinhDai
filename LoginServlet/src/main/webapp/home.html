@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+</head>
+<body>
+  <h2 id="welcome"></h2>
+  <p>This is Home page.</p>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const u = params.get("user");
+    if (u) {
+      document.getElementById("welcome").textContent = "Welcome, " + u + "!";
+    }
+  </script>
+</body>
+</html>
